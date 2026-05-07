@@ -31,10 +31,13 @@ nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-
 .nav-logo img:hover{transform:scale(1.04)}
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
 .nav-item{position:relative}
-.nav-item>a{padding:8px 14px;border-radius:8px;font-size:.76rem;font-weight:500;color:rgba(255,255,255,.92);text-decoration:none;display:flex;align-items:center;gap:4px;transition:color .2s;white-space:nowrap}
+.nav-item>a{padding:8px 14px;border-radius:8px;font-size:.72rem;font-weight:500;color:var(--text);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:1px;transition:all .2s;white-space:nowrap}
+.nav-en{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text);line-height:1.2;display:block}
+.nav-ja{font-size:.58rem;font-weight:400;color:var(--text-m);line-height:1.2;display:block}
 
-.nav-item>a:hover{color:var(--accent)}
-.nav-item>a:hover{background:var(--accent-l);color:var(--primary)}
+.nav-item>a:hover{background:var(--accent-l)}
+.nav-item>a:hover .nav-en{color:var(--primary)}
+.nav-item>a:hover .nav-ja{color:var(--accent)}
 .nav-arrow{font-size:.44rem;opacity:.4;transition:transform .2s}
 .nav-item:hover .nav-arrow{transform:rotate(180deg)}
 .nav-drop{position:absolute;top:calc(100% + 10px);left:50%;background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px;min-width:178px;box-shadow:0 16px 48px rgba(0,0,0,.1);opacity:0;pointer-events:none;transform:translateX(-50%) translateY(-8px);transition:opacity .2s var(--ease),transform .2s var(--ease)}
@@ -53,7 +56,8 @@ nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-
 /* HERO */
 .hero{position:relative;height:100vh;min-height:800px;overflow:hidden;display:flex;align-items:flex-start}
 .hero-bg{position:absolute;inset:0;background:#0a1a2e}
-.hero-bg img{width:100%;height:100%;object-fit:contain;object-position:center center;opacity:1;transform:scale(1.0);transition:none}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center center;opacity:1;transform:scale(1.0);animation:kenburns 18s ease-in-out infinite alternate;}
+@keyframes kenburns{0%{transform:scale(1.0) translateX(0)}100%{transform:scale(1.08) translateX(-1%)}}
 
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.42) 0%,rgba(0,0,0,.12) 55%,rgba(0,0,0,.01) 100%)}
 .hero-content{position:relative;z-index:2;width:100%;padding:calc(var(--nav-h) + 40px) 68px 40px;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:48px}
@@ -243,12 +247,12 @@ footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
 <nav id="nav">
   <a class="nav-logo" href="#"><img src="images/index_01.png" alt="WAKO! 和光建設" style="height:44px;width:auto;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45));transition:transform .3s;"></a>
   <ul class="nav-links">
-    <li class="nav-item"><a href="#">会社情報 <span class="nav-arrow">▼</span></a><div class="nav-drop"><a href="#">会社概要</a><a href="#">企業理念</a><a href="#">採用情報</a></div></li>
-    <li class="nav-item"><a href="#">サービス <span class="nav-arrow">▼</span></a><div class="nav-drop"><a href="#">内装解体</a><a href="#">建物解体</a><a href="#">産廃処理</a></div></li>
-    <li class="nav-item"><a href="#">施工実績</a></li>
-    <li class="nav-item"><a href="#">料金</a></li>
-    <li class="nav-item"><a href="#">よくある質問</a></li>
-    <li class="nav-item"><a href="#" class="nav-cta">無料相談</a></li>
+    <li class="nav-item"><a href="about.html"><span class="nav-en">COMPANY <span class="nav-arrow">▼</span></span><span class="nav-ja">会社情報</span></a><div class="nav-drop"><a href="about.html">会社概要</a><a href="about.html#philosophy">企業理念</a><a href="#">採用情報</a></div></li>
+    <li class="nav-item"><a href="services.html"><span class="nav-en">SERVICE <span class="nav-arrow">▼</span></span><span class="nav-ja">サービス</span></a><div class="nav-drop"><a href="services.html#interior">内装解体</a><a href="services.html#demolition">建物解体</a><a href="services.html#waste">産廃処理</a></div></li>
+    <li class="nav-item"><a href="works.html"><span class="nav-en">WORKS</span><span class="nav-ja">施工実績</span></a></li>
+    <li class="nav-item"><a href="price.html"><span class="nav-en">PRICE</span><span class="nav-ja">料金</span></a></li>
+    <li class="nav-item"><a href="faq.html"><span class="nav-en">FAQ</span><span class="nav-ja">よくあるご質問</span></a></li>
+    <li class="nav-item"><a href="contact.html" class="nav-cta">無料相談</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
@@ -309,10 +313,10 @@ footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
 </section>
 
 <div class="numstrip reveal">
-  <div class="ns-item"><div class="ns-val">500<sup>+</sup></div><div class="ns-lbl">施工実績</div></div>
-  <div class="ns-item"><div class="ns-val">30<sup>年</sup></div><div class="ns-lbl">業界経験</div></div>
-  <div class="ns-item"><div class="ns-val">3<sup>府県</sup></div><div class="ns-lbl">対応エリア</div></div>
-  <div class="ns-item"><div class="ns-val">24<sup>h</sup></div><div class="ns-lbl">緊急対応</div></div>
+  <div class="ns-item"><div class="ns-val"><span data-val="500" data-suffix="+">0+</span></div><div class="ns-lbl">施工実績</div></div>
+  <div class="ns-item"><div class="ns-val"><span data-val="30" data-suffix="年">0年</span></div><div class="ns-lbl">業界経験</div></div>
+  <div class="ns-item"><div class="ns-val"><span data-val="3" data-suffix="府県">0府県</span></div><div class="ns-lbl">対応エリア</div></div>
+  <div class="ns-item"><div class="ns-val"><span data-val="24" data-suffix="h">0h</span></div><div class="ns-lbl">緊急対応</div></div>
 </div>
 
 <section class="why">
@@ -378,10 +382,36 @@ footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
 const h=document.getElementById('heroBg');
-// no zoom
+// kenburns via CSS
 const reveals=document.querySelectorAll('.reveal');
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}})},{threshold:.1});
 reveals.forEach(el=>observer.observe(el));
+
+// カウンターアニメーション
+function animateCounter(el, target, suffix) {
+  let start = 0;
+  const duration = 1800;
+  const step = timestamp => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const val = el.dataset.val;
+      const suffix = el.dataset.suffix || '';
+      animateCounter(el, parseInt(val), suffix);
+      counterObs.unobserve(el);
+    }
+  });
+}, {threshold: .5});
+document.querySelectorAll('[data-val]').forEach(el => counterObs.observe(el));
 
 const hamburger=document.getElementById('hamburger');
 const navMob=document.getElementById('navMob');
