@@ -181,23 +181,53 @@ nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-
 .btn-ow:hover{border-color:#0f2744;background:rgba(255,255,255,.4);color:#0f2744}
 
 /* FOOTER */
-footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
-.footer-top{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:48px;margin-bottom:52px}
-.footer-logo{height:88px;width:auto;filter:none;margin-bottom:20px;display:block;opacity:1;transition:opacity .3s}
-.footer-logo:hover{opacity:.8}
-.footer-brand p{font-size:.9rem;color:rgba(255,255,255,.72);line-height:2;font-weight:300}
-.footer-col h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px;font-weight:600}
-.footer-links{list-style:none}
-.footer-links li{margin-bottom:12px}
-.footer-links a{font-size:.88rem;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:10px;font-weight:300}
-.footer-links a::before{content:'';width:10px;height:1px;background:rgba(255,255,255,.12);flex-shrink:0;transition:background .2s,width .2s}
-.footer-links a:hover{color:rgba(255,255,255,.8)}
-.footer-links a:hover::before{background:var(--accent);width:16px}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
-.footer-copy{font-size:.78rem;color:rgba(255,255,255,.55);letter-spacing:.1em}
+footer{position:relative;overflow:hidden;background:#0a1a2e;min-height:600px}
+
+/* 背景グリッド */
+.footer-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:3px;z-index:0}
+.footer-grid-item{overflow:hidden;position:relative}
+.footer-grid-item img{width:100%;height:100%;object-fit:cover;opacity:.28;filter:grayscale(30%);animation:imgPulse 6s ease-in-out infinite alternate}
+.footer-grid-item:nth-child(2){animation-delay:.8s}
+.footer-grid-item:nth-child(3){animation-delay:1.6s}
+.footer-grid-item:nth-child(4){animation-delay:2.4s}
+.footer-grid-item:nth-child(5){animation-delay:3.2s}
+.footer-grid-item:nth-child(6){animation-delay:4s}
+.footer-grid-item:nth-child(7){animation-delay:4.8s}
+.footer-grid-item:nth-child(8){animation-delay:5.6s}
+.footer-grid-item:hover img{opacity:.55;filter:grayscale(0%)}
+@keyframes imgPulse{0%{opacity:.18;transform:scale(1)}100%{opacity:.38;transform:scale(1.04)}}
+
+/* オーバーレイ */
+.footer-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,26,46,.3) 0%,rgba(10,26,46,.65) 60%,rgba(10,26,46,.92) 100%);z-index:1}
+
+/* センターコンテンツ */
+.footer-center{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px 40px;text-align:center}
+.footer-logo-wrap img{height:100px;width:auto;margin-bottom:16px;display:block}
+.footer-tagline{font-size:.7rem;letter-spacing:.4em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:32px}
+.footer-nav{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
+.footer-nav a{font-size:.8rem;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.08em;transition:color .2s;font-weight:300}
+.footer-nav a:hover{color:#fff}
+.footer-divider{width:40px;height:1px;background:var(--accent);margin:0 auto 32px}
+
+/* 横流れテキスト */
+.footer-ticker{overflow:hidden;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:14px 0;margin-bottom:0;position:relative;z-index:2}
+.footer-ticker-inner{display:flex;white-space:nowrap;animation:fticker 24s linear infinite}
+.footer-ticker-item{display:inline-flex;align-items:center;gap:20px;padding:0 20px;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:.3em;color:rgba(255,255,255,.3);text-transform:uppercase}
+.footer-ticker-sep{width:4px;height:4px;background:var(--accent);border-radius:50%;opacity:.6}
+@keyframes fticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* コピーライト */
+.footer-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 48px;border-top:1px solid rgba(255,255,255,.08);text-align:left}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.1em}
 .footer-legal{display:flex;gap:20px}
-.footer-legal a{font-size:.78rem;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
-.footer-legal a:hover{color:rgba(255,255,255,.5)}
+.footer-legal a{font-size:.72rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.6)}
+
+@media(max-width:640px){
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:left;padding:16px}
+  .footer-nav{gap:16px}
+}
 
 /* THEME BADGE */
 .theme-badge{position:fixed;top:80px;right:16px;z-index:999;background:rgba(0,0,0,.75);color:#fff;font-size:.72rem;font-weight:600;padding:8px 14px;border-radius:4px;letter-spacing:.04em;backdrop-filter:blur(8px)}
@@ -246,7 +276,7 @@ footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
 #opening-bg{position:absolute;inset:0;background:#0f2744;transform:translateY(0);transition:transform .9s cubic-bezier(.76,0,.24,1)}
 #opening-bg2{position:absolute;inset:0;background:#f97316;transform:translateY(0);transition:transform .9s cubic-bezier(.76,0,.24,1) .08s}
 #opening-logo{position:relative;z-index:2;text-align:center;opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
-#opening-logo img{height:320px;width:auto;filter:brightness(0) invert(1)}
+#opening-logo img{height:320px;width:auto;}
 #opening-logo .op-sub{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;letter-spacing:.55em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:16px;display:block}
 #opening.hide #opening-bg{transform:translateY(-100%)}
 #opening.hide #opening-bg2{transform:translateY(-100%)}
@@ -260,7 +290,7 @@ body.opening-active{overflow:hidden}
   <div id="opening-bg2"></div>
   <div id="opening-bg"></div>
   <div id="opening-logo">
-    <img src="images/index_01.png" alt="WAKO!">
+    <img src="images/wako_trimmed.png" alt="WAKO!">
     <span class="op-sub">Interior &amp; Building Demolition</span>
   </div>
 </div>
@@ -390,13 +420,61 @@ body.opening-active{overflow:hidden}
 </section>
 
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand"><img class="footer-logo" src="images/index_07.png" alt="WAKO!"><p>和光建設株式会社<br>〒XXX-XXXX 兵庫県神戸市XXX<br>TEL: 0XX-XXXX-XXXX</p></div>
-    <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="#">会社概要</a></li><li><a href="#">企業理念</a></li><li><a href="#">採用情報</a></li></ul></div>
-    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="#">内装解体</a></li><li><a href="#">建物解体</a></li><li><a href="#">産廃処理</a></li></ul></div>
-    <div class="footer-col"><h4>Useful</h4><ul class="footer-links"><li><a href="#">施工実績</a></li><li><a href="#">料金案内</a></li><li><a href="#">お問い合わせ</a></li></ul></div>
+  <!-- 背景グリッド画像 -->
+  <div class="footer-grid">
+    <div class="footer-grid-item"><img src="images/about_02.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/works_02.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/works_09.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/services_02.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/works_06.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/services_04.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/works_03.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/services_06.jpg" alt=""></div>
   </div>
-  <div class="footer-bottom"><div class="footer-copy">© 2025 和光建設株式会社 All Rights Reserved.</div><div class="footer-legal"><a href="#">プライバシーポリシー</a><a href="#">サイトマップ</a></div></div>
+  <div class="footer-overlay"></div>
+
+  <!-- センターコンテンツ -->
+  <div class="footer-center">
+    <div class="footer-logo-wrap"><img src="images/wako_trimmed.png" alt="WAKO!"></div>
+    <div class="footer-tagline">Interior &amp; Building Demolition — Kansai</div>
+    <div class="footer-divider"></div>
+    <nav class="footer-nav">
+      <a href="about.html">会社概要</a>
+      <a href="services.html">サービス</a>
+      <a href="works.html">施工実績</a>
+      <a href="price.html">料金案内</a>
+      <a href="faq.html">よくあるご質問</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+
+  <!-- 横流れテキスト -->
+  <div class="footer-ticker">
+    <div class="footer-ticker-inner">
+      <span class="footer-ticker-item">内装解体<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">建物解体<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">店舗スケルトン<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">産廃処理<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">アスベスト対応<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">神戸<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">大阪<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">京都<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">内装解体<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">建物解体<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">店舗スケルトン<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">産廃処理<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">アスベスト対応<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">神戸<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">大阪<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">京都<span class="footer-ticker-sep"></span></span>
+    </div>
+  </div>
+
+  <!-- コピーライト -->
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 和光建設株式会社 All Rights Reserved.</div>
+    <div class="footer-legal"><a href="#">プライバシーポリシー</a><a href="#">サイトマップ</a></div>
+  </div>
 </footer>
 
 <script>
