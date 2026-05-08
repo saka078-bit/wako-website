@@ -176,24 +176,51 @@ nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-
 .btn-ow{border:2px solid #0f2744;color:#0f2744;background:rgba(255,255,255,.25);padding:12px 26px;border-radius:3px;font-size:.82rem;text-decoration:none;transition:all .3s}
 .btn-ow:hover{border-color:#0f2744;background:rgba(255,255,255,.4);color:#0f2744}
 
-/* FOOTER */
-footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
-.footer-top{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:48px;margin-bottom:52px}
-.footer-logo{height:88px;width:auto;filter:none;margin-bottom:20px;display:block;opacity:1;transition:opacity .3s}
-.footer-logo:hover{opacity:.8}
-.footer-brand p{font-size:.9rem;color:rgba(255,255,255,.72);line-height:2;font-weight:300}
-.footer-col h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px;font-weight:600}
-.footer-links{list-style:none}
-.footer-links li{margin-bottom:12px}
-.footer-links a{font-size:.88rem;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:10px;font-weight:300}
-.footer-links a::before{content:'';width:10px;height:1px;background:rgba(255,255,255,.12);flex-shrink:0;transition:background .2s,width .2s}
-.footer-links a:hover{color:rgba(255,255,255,.8)}
-.footer-links a:hover::before{background:var(--accent);width:16px}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
-.footer-copy{font-size:.78rem;color:rgba(255,255,255,.55);letter-spacing:.1em}
+/* 背景グリッド */
+.footer-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:3px;z-index:0}
+.footer-grid-item{overflow:hidden;position:relative}
+.footer-grid-item img{width:100%;height:100%;object-fit:cover;opacity:.28;filter:grayscale(30%);animation:imgPulse 6s ease-in-out infinite alternate}
+.footer-grid-item:nth-child(2){animation-delay:.8s}
+.footer-grid-item:nth-child(3){animation-delay:1.6s}
+.footer-grid-item:nth-child(4){animation-delay:2.4s}
+.footer-grid-item:nth-child(5){animation-delay:3.2s}
+.footer-grid-item:nth-child(6){animation-delay:4s}
+.footer-grid-item:nth-child(7){animation-delay:4.8s}
+.footer-grid-item:nth-child(8){animation-delay:5.6s}
+.footer-grid-item:hover img{opacity:.55;filter:grayscale(0%)}
+@keyframes imgPulse{0%{opacity:.18;transform:scale(1)}100%{opacity:.38;transform:scale(1.04)}}
+
+/* オーバーレイ */
+.footer-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,26,46,.3) 0%,rgba(10,26,46,.65) 60%,rgba(10,26,46,.92) 100%);z-index:1}
+
+/* センターコンテンツ */
+.footer-center{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px 40px;text-align:center}
+.footer-logo-wrap img{height:100px;width:auto;margin-bottom:16px;display:block}
+.footer-tagline{font-size:.7rem;letter-spacing:.4em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:32px}
+.footer-nav{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
+.footer-nav a{font-size:.8rem;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.08em;transition:color .2s;font-weight:300}
+.footer-nav a:hover{color:#fff}
+.footer-divider{width:40px;height:1px;background:var(--accent);margin:0 auto 32px}
+
+/* 横流れテキスト */
+.footer-ticker{overflow:hidden;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:14px 0;margin-bottom:0;position:relative;z-index:2}
+.footer-ticker-inner{display:flex;white-space:nowrap;animation:fticker 24s linear infinite}
+.footer-ticker-item{display:inline-flex;align-items:center;gap:20px;padding:0 20px;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:.3em;color:rgba(255,255,255,.3);text-transform:uppercase}
+.footer-ticker-sep{width:4px;height:4px;background:var(--accent);border-radius:50%;opacity:.6}
+@keyframes fticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* コピーライト */
+.footer-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 48px;border-top:1px solid rgba(255,255,255,.08);text-align:left}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.1em}
 .footer-legal{display:flex;gap:20px}
-.footer-legal a{font-size:.78rem;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
-.footer-legal a:hover{color:rgba(255,255,255,.5)}
+.footer-legal a{font-size:.72rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.6)}
+
+@media(max-width:640px){
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:left;padding:16px}
+  .footer-nav{gap:16px}
+}
 
 /* THEME BADGE */
 .theme-badge{position:fixed;top:80px;right:16px;z-index:999;background:rgba(0,0,0,.75);color:#fff;font-size:.72rem;font-weight:600;padding:8px 14px;border-radius:4px;letter-spacing:.04em;backdrop-filter:blur(8px)}
@@ -224,84 +251,6 @@ footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
   .footer-bottom{flex-direction:column;gap:10px;text-align:center}
 }
 
-/* PAGE HEADER */
-.page-header{
-  padding:calc(var(--nav-h) + 56px) 68px 64px;
-  background:linear-gradient(135deg,#0f2744 0%,#1a3a5c 50%,#38b6e8 100%);
-  position:relative;overflow:hidden
-}
-.page-header::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 80% at 100% 0%,rgba(255,255,255,.08),transparent)
-}
-.page-header::after{
-  content:'ABOUT';
-  font-family:'Barlow Condensed',sans-serif;font-size:16vw;
-  color:rgba(255,255,255,.04);letter-spacing:-.02em;
-  position:absolute;bottom:-2vw;right:-1vw;
-  white-space:nowrap;pointer-events:none;line-height:1
-}
-.ph-inner{position:relative;z-index:1}
-.ph-bread{display:flex;align-items:center;gap:8px;font-size:.68rem;color:rgba(255,255,255,.45);margin-bottom:16px}
-.ph-bread a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
-.ph-bread a:hover{color:rgba(255,255,255,.8)}
-.ph-bread span{color:rgba(255,255,255,.2)}
-.page-header h1{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(3rem,7vw,5.5rem);
-  line-height:1;color:#fff;margin-bottom:12px
-}
-.page-header h1 em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--orange)}
-.page-header p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:2;font-weight:300;max-width:480px}
-
-/* SUB-NAV */
-.sub-nav{position:sticky;top:var(--nav-h);z-index:800;background:var(--white);border-bottom:1px solid var(--border);padding:0 68px;overflow-x:auto;white-space:nowrap;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.sub-nav-inner{display:flex;min-width:max-content}
-.sub-nav a{display:inline-block;padding:14px 18px;font-size:.78rem;font-weight:500;color:var(--text-m);text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-.sub-nav a:hover,.sub-nav a.active{color:var(--primary);border-bottom-color:var(--accent)}
-
-/* CTA STRIP */
-.cta-strip{
-  padding:64px 68px;
-  background:linear-gradient(135deg,#0f2744 0%,#1a3a5c 60%,#38b6e8 100%);
-  text-align:center;position:relative;overflow:hidden
-}
-.cta-strip::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 0%,rgba(255,255,255,.08),transparent)}
-.cta-strip-inner{position:relative;z-index:1}
-.cta-strip h2{color:#fff;margin-bottom:10px}
-.cta-strip p{font-size:.88rem;color:rgba(255,255,255,.65);margin-bottom:28px;font-weight:300;line-height:2}
-.cta-strip-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.btn-cta{background:var(--orange);color:#fff;padding:14px 32px;border-radius:3px;font-size:.84rem;font-weight:600;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(249,115,22,.35)}
-.btn-cta:hover{background:var(--orange-d);transform:translateY(-2px)}
-.btn-cta-ghost{border:1.5px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);padding:13px 28px;border-radius:3px;font-size:.84rem;text-decoration:none;transition:all .3s}
-.btn-cta-ghost:hover{border-color:#fff;color:#fff}
-
-/* CONTENT COMMON */
-.content-section{padding:80px 68px;background:var(--cream)}
-.content-section.white{background:var(--white)}
-.content-section.navy{background:#0f2744}
-.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:40px}
-.content-grid.rev{direction:rtl}
-.content-grid.rev>*{direction:ltr}
-.content-img{border-radius:8px;overflow:hidden;aspect-ratio:4/3}
-.content-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
-.content-img:hover img{transform:scale(1.04)}
-.content-text h3{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--navy);line-height:1.05;margin-bottom:14px}
-.content-text p{font-size:.88rem;color:var(--text-m);line-height:2.1;font-weight:300;margin-bottom:16px}
-.content-text ul{list-style:none;margin-top:8px}
-.content-text ul li{font-size:.86rem;color:var(--text-m);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;font-weight:300}
-.content-text ul li::before{content:'';width:20px;height:2px;background:var(--orange);flex-shrink:0}
-
-@media(max-width:1100px){
-  .page-header,.cta-strip,.content-section{padding-left:36px;padding-right:36px}
-  .sub-nav{padding:0 36px}
-  .content-grid{grid-template-columns:1fr;gap:28px}
-}
-@media(max-width:640px){
-  .page-header,.cta-strip,.content-section{padding-left:18px;padding-right:18px}
-  .sub-nav{padding:0 18px}
-}
-
 /* ─── MOBILE NAV MENU ─── */
 .nav-mob{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:#fff;z-index:800;overflow-y:auto;padding:8px 0 80px;border-top:1px solid var(--border)}
 .nav-mob.open{display:block}
@@ -314,18 +263,123 @@ footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
 .nm-cta a{display:flex;align-items:center;justify-content:center;padding:18px 0;font-size:.78rem;font-weight:600;text-decoration:none}
 .nm-cta .c1{background:#0f2744;color:rgba(255,255,255,.85)}
 .nm-cta .c2{background:#f97316;color:#fff}
+
+/* ─── OPENING ANIMATION ─── */
+#opening{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#opening-bg{position:absolute;inset:0;background:#0f2744;transform:translateY(0);transition:transform .9s cubic-bezier(.76,0,.24,1)}
+#opening-bg2{position:absolute;inset:0;background:#f97316;transform:translateY(0);transition:transform .9s cubic-bezier(.76,0,.24,1) .08s}
+#opening-logo{position:relative;z-index:2;text-align:center;opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+#opening-logo img{height:320px;width:auto;}
+#opening-logo .op-sub{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;letter-spacing:.55em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:16px;display:block}
+#opening.hide #opening-bg{transform:translateY(-100%)}
+#opening.hide #opening-bg2{transform:translateY(-100%)}
+#opening.hide #opening-logo{opacity:0;transform:translateY(-8px)}
+#opening.done{display:none}
+body.opening-active{overflow:hidden}
+
+/* ─── NAV (unified) ─── */
+  --nav-h:84px;
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);padding:0 56px;display:flex;align-items:center;justify-content:space-between;transition:background .5s,border-color .5s,box-shadow .5s;border-bottom:1px solid var(--border);background:rgba(255,255,255,.97);backdrop-filter:blur(20px)}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-color:var(--border);box-shadow:0 1px 24px rgba(0,0,0,.06)}
+.nav-logo img{height:58px;width:auto;display:block;filter:none;transition:transform .3s var(--ease)}
+.nav-logo img:hover{transform:scale(1.04)}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-item{position:relative}
+.nav-item>a{padding:8px 14px;border-radius:8px;font-size:.72rem;font-weight:500;color:var(--text);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:1px;transition:all .2s;white-space:nowrap}
+.nav-en{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text);line-height:1.2;display:block}
+.nav-ja{font-size:.58rem;font-weight:400;color:var(--text-m);line-height:1.2;display:block}
+.nav-item>a:hover{background:var(--accent-l)}
+.nav-item>a:hover .nav-en{color:var(--primary)}
+.nav-item>a:hover .nav-ja{color:var(--accent)}
+.nav-arrow{font-size:.44rem;opacity:.4;transition:transform .2s}
+.nav-item:hover .nav-arrow{transform:rotate(180deg)}
+.nav-drop{position:absolute;top:calc(100% + 10px);left:50%;background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px;min-width:178px;box-shadow:0 16px 48px rgba(0,0,0,.1);opacity:0;pointer-events:none;transform:translateX(-50%) translateY(-8px);transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.nav-item:hover .nav-drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-drop a{display:block;padding:9px 14px;border-radius:7px;font-size:.75rem;color:var(--text);text-decoration:none;transition:background .15s}
+.nav-drop a:hover{background:var(--bg2);color:var(--primary)}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:9px 22px!important;border-radius:4px!important;font-weight:600!important;box-shadow:0 3px 14px rgba(249,115,22,.3)!important;transition:all .25s!important}
+.nav-cta:hover{background:var(--accent-d)!important;transform:translateY(-1px)!important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;transition:all .3s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.hero-content{position:relative;z-index:2;width:100%;padding:calc(var(--nav-h) + 40px) 68px 40px;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:48px}
+.footer-nav{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
+.footer-nav a{font-size:.8rem;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.08em;transition:color .2s;font-weight:300}
+.footer-nav a:hover{color:#fff}
+  .footer-nav{gap:16px}
+@media(max-width:900px){.nav-links{display:none}.nav-hamburger{display:flex}}
+  nav{padding:0 16px}
+  .hero-content{padding:calc(var(--nav-h)+72px) 18px 60px;grid-template-columns:1fr}
+/* ─── MOBILE NAV MENU ─── */
+.nav-mob{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:#fff;z-index:800;overflow-y:auto;padding:8px 0 80px;border-top:1px solid var(--border)}
+.nav-mob.open{display:block}
+.nm-item{border-bottom:1px solid var(--border)}
+.nm-item>a{display:flex;justify-content:space-between;align-items:center;padding:15px 24px;font-size:.88rem;font-weight:500;color:var(--text);text-decoration:none}
+.nm-sub{background:var(--bg2,#faeaea);display:none}
+.nm-sub a{display:block;padding:12px 36px;font-size:.82rem;color:var(--text-m);text-decoration:none;border-bottom:1px solid var(--border)}
+.nm-sub a:last-child{border-bottom:none}
+.nm-cta{display:grid;grid-template-columns:1fr 1fr}
+.nm-cta a{display:flex;align-items:center;justify-content:center;padding:18px 0;font-size:.78rem;font-weight:600;text-decoration:none}
+.nm-cta .c1{background:#0f2744;color:rgba(255,255,255,.85)}
+.nm-cta .c2{background:#f97316;color:#fff}
+/* ─── FOOTER (unified) ─── */
+.ticker{background:var(--accent);padding:10px 0;overflow:hidden}
+.ticker-inner{display:flex;white-space:nowrap;animation:ticker 30s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:18px;padding:0 18px;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;letter-spacing:.2em;color:rgba(255,255,255,.9)}
+.ticker-sep{width:3px;height:3px;background:rgba(255,255,255,.4);border-radius:50%}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* FOOTER */
+footer{position:relative;overflow:hidden;background:#0a1a2e;min-height:600px}
+.footer-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:3px;z-index:0}
+.footer-grid-item{overflow:hidden;position:relative}
+.footer-grid-item img{width:100%;height:100%;object-fit:cover;opacity:.28;filter:grayscale(30%);animation:imgPulse 6s ease-in-out infinite alternate}
+.footer-grid-item:nth-child(2){animation-delay:.8s}
+.footer-grid-item:nth-child(3){animation-delay:1.6s}
+.footer-grid-item:nth-child(4){animation-delay:2.4s}
+.footer-grid-item:nth-child(5){animation-delay:3.2s}
+.footer-grid-item:nth-child(6){animation-delay:4s}
+.footer-grid-item:nth-child(7){animation-delay:4.8s}
+.footer-grid-item:nth-child(8){animation-delay:5.6s}
+.footer-grid-item:hover img{opacity:.55;filter:grayscale(0%)}
+.footer-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,26,46,.3) 0%,rgba(10,26,46,.65) 60%,rgba(10,26,46,.92) 100%);z-index:1}
+.footer-center{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px 40px;text-align:center}
+.footer-logo-wrap img{height:100px;width:auto;margin-bottom:16px;display:block}
+.footer-tagline{font-size:.7rem;letter-spacing:.4em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:32px}
+.footer-nav{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
+.footer-nav a{font-size:.8rem;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.08em;transition:color .2s;font-weight:300}
+.footer-nav a:hover{color:#fff}
+.footer-divider{width:40px;height:1px;background:var(--accent);margin:0 auto 32px}
+.footer-ticker{overflow:hidden;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:14px 0;margin-bottom:0;position:relative;z-index:2}
+.footer-ticker-inner{display:flex;white-space:nowrap;animation:fticker 24s linear infinite}
+.footer-ticker-item{display:inline-flex;align-items:center;gap:20px;padding:0 20px;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:.3em;color:rgba(255,255,255,.3);text-transform:uppercase}
+.footer-ticker-sep{width:4px;height:4px;background:var(--accent);border-radius:50%;opacity:.6}
+@keyframes fticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.footer-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 48px;border-top:1px solid rgba(255,255,255,.08);text-align:left}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.1em}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:.72rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.6)}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:left;padding:16px}
+  .footer-nav{gap:16px}
+  footer{padding:48px 18px 20px}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:10px;text-align:center}
+</style>
 </style>
 </head>
 <body>
 <nav id="nav">
-  <a class="nav-logo" href="#"><img src="images/about_01.png" alt="WAKO! 和光建設" style="height:44px;width:auto;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45));transition:transform .3s;"></a>
+  <a class="nav-logo" href="index.html"><img src="images/index_01.png" alt="WAKO! 和光建設" style="height:44px;width:auto;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45));transition:transform .3s;"></a>
   <ul class="nav-links">
-    <li class="nav-item"><a href="#">会社情報 <span class="nav-arrow">▼</span></a><div class="nav-drop"><a href="#">会社概要</a><a href="#">企業理念</a><a href="#">採用情報</a></div></li>
-    <li class="nav-item"><a href="#">サービス <span class="nav-arrow">▼</span></a><div class="nav-drop"><a href="#">内装解体</a><a href="#">建物解体</a><a href="#">産廃処理</a></div></li>
-    <li class="nav-item"><a href="#">施工実績</a></li>
-    <li class="nav-item"><a href="#">料金</a></li>
-    <li class="nav-item"><a href="#">よくある質問</a></li>
-    <li class="nav-item"><a href="#" class="nav-cta">無料相談</a></li>
+    <li class="nav-item"><a href="about.html"><span class="nav-en">COMPANY <span class="nav-arrow">▼</span></span><span class="nav-ja">会社情報</span></a><div class="nav-drop"><a href="about.html">会社概要</a><a href="about.html#philosophy">企業理念</a><a href="#">採用情報</a></div></li>
+    <li class="nav-item"><a href="services.html"><span class="nav-en">SERVICE <span class="nav-arrow">▼</span></span><span class="nav-ja">サービス</span></a><div class="nav-drop"><a href="services.html#interior">内装解体</a><a href="services.html#demolition">建物解体</a><a href="services.html#waste">産廃処理</a></div></li>
+    <li class="nav-item"><a href="works.html"><span class="nav-en">WORKS</span><span class="nav-ja">施工実績</span></a></li>
+    <li class="nav-item"><a href="price.html"><span class="nav-en">PRICE</span><span class="nav-ja">料金</span></a></li>
+    <li class="nav-item"><a href="faq.html"><span class="nav-en">FAQ</span><span class="nav-ja">よくあるご質問</span></a></li>
+    <li class="nav-item"><a href="contact.html" class="nav-cta">無料相談</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
@@ -430,13 +484,54 @@ footer{background:#0f2744;border-top:3px solid #f97316;padding:64px 68px 32px}
 </div>
 
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand"><img class="footer-logo" src="images/about_04.png" alt="WAKO!"><p>和光建設株式会社<br>〒XXX-XXXX 兵庫県神戸市XXX<br>TEL: 0XX-XXXX-XXXX</p></div>
-    <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="#">会社概要</a></li><li><a href="#">企業理念</a></li><li><a href="#">採用情報</a></li></ul></div>
-    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="#">内装解体</a></li><li><a href="#">建物解体</a></li><li><a href="#">産廃処理</a></li></ul></div>
-    <div class="footer-col"><h4>Useful</h4><ul class="footer-links"><li><a href="#">施工実績</a></li><li><a href="#">料金案内</a></li><li><a href="#">お問い合わせ</a></li></ul></div>
+  <div class="footer-grid">
+    <div class="footer-grid-item"><img src="images/about_02.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/works_02.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/works_09.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/services_02.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/works_06.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/services_04.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/works_03.jpg" alt=""></div>
+    <div class="footer-grid-item"><img src="images/services_06.jpg" alt=""></div>
   </div>
-  <div class="footer-bottom"><div class="footer-copy">© 2025 和光建設株式会社 All Rights Reserved.</div><div class="footer-legal"><a href="#">プライバシーポリシー</a><a href="#">サイトマップ</a></div></div>
+  <div class="footer-overlay"></div>
+  <div class="footer-center">
+    <div class="footer-logo-wrap"><img src="images/wako_trimmed.png" alt="WAKO!"></div>
+    <div class="footer-tagline">Interior &amp; Building Demolition — Kansai</div>
+    <div class="footer-divider"></div>
+    <nav class="footer-nav">
+      <a href="about.html">会社概要</a>
+      <a href="services.html">サービス</a>
+      <a href="works.html">施工実績</a>
+      <a href="price.html">料金案内</a>
+      <a href="faq.html">よくあるご質問</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="footer-ticker">
+    <div class="footer-ticker-inner">
+      <span class="footer-ticker-item">内装解体<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">建物解体<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">店舗スケルトン<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">産廃処理<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">アスベスト対応<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">神戸<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">大阪<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">京都<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">内装解体<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">建物解体<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">店舗スケルトン<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">産廃処理<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">アスベスト対応<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">神戸<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">大阪<span class="footer-ticker-sep"></span></span>
+      <span class="footer-ticker-item">京都<span class="footer-ticker-sep"></span></span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 和光建設株式会社 All Rights Reserved.</div>
+    <div class="footer-legal"><a href="#">プライバシーポリシー</a><a href="#">サイトマップ</a></div>
+  </div>
 </footer>
 <div style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex" id="phoneBar">
   <a href="tel:0XXXXXXXXX" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 0;font-size:.76rem;font-weight:600;text-decoration:none;background:#0f2744;color:rgba(255,255,255,.8);">📞 電話する</a>
