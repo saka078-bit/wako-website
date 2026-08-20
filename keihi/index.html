@@ -804,7 +804,20 @@ function importJson(inp){
   };
   rd.readAsText(f); inp.value='';
 }
-function download(text, name, type){
+async function download(text, name, type){
+  // 通常のブラウザ／サイト上ではリンク保存。プレビュー環境では保存APIを使う
+  const api = window.claude && claude.use ? await claude.use('downloads').catch(()=>null) : null;
+  if(api){
+    try{ await api.save({filename:name, data:text}); }
+    catch(e){
+      if(e && e.code==='extension_not_enabled'){
+        try{ await api.save({filename:name.replace(/\.[^.]+$/,'.txt'), data:text}); return; }
+        catch(_){}
+      }
+      if(!e || e.code!=='declined') toast('保存できませんでした');
+    }
+    return;
+  }
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([text], {type}));
   a.download = name; a.click();
